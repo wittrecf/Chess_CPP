@@ -1,0 +1,228 @@
+#version 330 core
+
+in vec3 fragmentColor;
+in vec3 pos;
+in vec3 dataT;
+
+// Ouput data
+out vec3 color;
+
+uniform int clickX;
+uniform int clickY;
+
+uniform sampler2D blackPawn_white;
+uniform sampler2D blackPawn_black;
+uniform sampler2D whitePawn_white;
+uniform sampler2D whitePawn_black;
+
+uniform sampler2D blackRook_white;
+uniform sampler2D blackRook_black;
+uniform sampler2D whiteRook_white;
+uniform sampler2D whiteRook_black;
+
+uniform sampler2D blackKnight_white;
+uniform sampler2D blackKnight_black;
+uniform sampler2D whiteKnight_white;
+uniform sampler2D whiteKnight_black;
+
+uniform sampler2D blackBishop_white;
+uniform sampler2D blackBishop_black;
+uniform sampler2D whiteBishop_white;
+uniform sampler2D whiteBishop_black;
+
+uniform sampler2D blackQueen_white;
+uniform sampler2D blackQueen_black;
+uniform sampler2D whiteQueen_white;
+uniform sampler2D whiteQueen_black;
+
+uniform sampler2D blackKing_white;
+uniform sampler2D blackKing_black;
+uniform sampler2D whiteKing_white;
+uniform sampler2D whiteKing_black;
+
+uniform sampler2D blackPawn_selected;
+uniform sampler2D whitePawn_selected;
+uniform sampler2D blackRook_selected;
+uniform sampler2D whiteRook_selected;
+uniform sampler2D blackKnight_selected;
+uniform sampler2D whiteKnight_selected;
+uniform sampler2D blackBishop_selected;
+uniform sampler2D whiteBishop_selected;
+uniform sampler2D blackQueen_selected;
+uniform sampler2D whiteQueen_selected;
+uniform sampler2D blackKing_selected;
+uniform sampler2D whiteKing_selected;
+
+uniform sampler2D blackPawn_potential;
+uniform sampler2D whitePawn_potential;
+uniform sampler2D blackRook_potential;
+uniform sampler2D whiteRook_potential;
+uniform sampler2D blackKnight_potential;
+uniform sampler2D whiteKnight_potential;
+uniform sampler2D blackBishop_potential;
+uniform sampler2D whiteBishop_potential;
+uniform sampler2D blackQueen_potential;
+uniform sampler2D whiteQueen_potential;
+uniform sampler2D blackKing_potential;
+uniform sampler2D whiteKing_potential;
+
+uniform sampler2D blackSquare_potential;
+uniform sampler2D whiteSquare_potential;
+
+uniform sampler2D blackKing_win;
+uniform sampler2D whiteKing_win;
+uniform sampler2D blackKing_lose;
+uniform sampler2D whiteKing_lose;
+
+void main(){
+	color = fragmentColor;
+	if ((dataT[0] > 1) && (dataT[0] <= 2)) {
+		if ((dataT[1] > 0) && (dataT[1] <= 1)) {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( whitePawn_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( whitePawn_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( whitePawn_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( whitePawn_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		} else {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( blackPawn_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( blackPawn_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( blackPawn_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( blackPawn_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		}
+	} else if ((dataT[0] > 2) && (dataT[0] < 3.1)) {
+		if ((dataT[1] > 0) && (dataT[1] <= 1)) {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( whiteRook_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( whiteRook_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( whiteRook_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( whiteRook_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		} else {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( blackRook_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( blackRook_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( blackRook_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( blackRook_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		}
+	} else if ((dataT[0] > 3) && (dataT[0] <= 4.1)) {
+		if ((dataT[1] > 0) && (dataT[1] <= 1)) {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( whiteKnight_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( whiteKnight_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( whiteKnight_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( whiteKnight_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		} else {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( blackKnight_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( blackKnight_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( blackKnight_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( blackKnight_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		}
+	} else if ((dataT[0] > 4) && (dataT[0] <= 5.1)) {
+		if ((dataT[1] > 0) && (dataT[1] <= 1)) {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( whiteBishop_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( whiteBishop_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( whiteBishop_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( whiteBishop_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		} else {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( blackBishop_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( blackBishop_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( blackBishop_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( blackBishop_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		}
+	} else if ((dataT[0] > 5) && (dataT[0] <= 6.1)) {
+		if ((dataT[1] > 0) && (dataT[1] <= 1)) {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( whiteQueen_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( whiteQueen_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( whiteQueen_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( whiteQueen_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		} else {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( blackQueen_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( blackQueen_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( blackQueen_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( blackQueen_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		}
+	} else if ((dataT[0] > 6) && (dataT[0] <= 7.1)) {
+		if ((dataT[1] > 0) && (dataT[1] <= 1)) {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( whiteKing_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( whiteKing_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] >= -1 && dataT[2] < 0) {
+				color = texture( whiteKing_win, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] < -1) {
+				color = texture( whiteKing_lose, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( whiteKing_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( whiteKing_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		} else {
+			if ((pos[0] <= clickY + 1) && (pos[0] >= clickY) && (pos[2] <= clickX + 1) && (pos[2] >= clickX)) {
+				color = texture( blackKing_selected, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] > 0) {
+				color = texture( blackKing_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] >= -1 && dataT[2] < 0) {
+				color = texture( blackKing_win, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (dataT[2] < -1) {
+				color = texture( blackKing_lose, vec2(-pos[2], -pos[0]) ).gbr;
+			} else if (fragmentColor[0] > 0) {
+				color = texture( blackKing_white, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( blackKing_black, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		}
+	} else {
+		if (dataT[2] > 0) {
+			if (fragmentColor[0] > 0) {
+				color = texture( whiteSquare_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			} else {
+				color = texture( blackSquare_potential, vec2(-pos[2], -pos[0]) ).gbr;
+			}
+		}
+	}
+}
